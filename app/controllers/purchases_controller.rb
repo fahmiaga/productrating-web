@@ -17,9 +17,18 @@ class PurchasesController < ApplicationController
     # TODO: Also decrease product quantity.
     # - For example, if `purchase.quantity` is 3, decrease `product.quantity` by 3
     # - Display an error if `product.quantity` is less than 0 (negative number)
+
+   if @product.quantity < 1 || @product.quantity < purchase_params[:quantity].to_i
+    flash[:error] = 'Something went wrong'
+    return render :new  
+   end
+   
+    @newQuantity = @product.quantity - purchase_params[:quantity].to_i
+
     @purchase.assign_attributes(purchase_params)
     if @purchase.save
-      redirect_to product_url(@product)
+       @product.update(:quantity => @newQuantity)
+       redirect_to product_url(@product)
     else
       flash[:error] = @purchase.errors.full_messages.join(', ')
       render :new
