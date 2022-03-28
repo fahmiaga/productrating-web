@@ -26,4 +26,8 @@ class Product < ApplicationRecord
     end
   end
 
+  def product_rating
+    Product.joins(purchases: :review).average(:rating).to_i
+  end
+
 end

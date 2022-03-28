@@ -12,7 +12,7 @@ Quantity: <%= @product.quantity %>
 Posted on: <%= distance_of_time_in_words(@product.created_at, Time.now) %>
 <br />
 <%# TODO: Calculate average rating based on the reviews from all of the product's purchases %>
-Average rating: TODO
+Average rating: <%= @product.product_rating %>
 
 <br />
 <br />
