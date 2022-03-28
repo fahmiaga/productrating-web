@@ -30,5 +30,8 @@ class Review < ApplicationRecord
     # - Rating cannot be greater than 5
     # - Rating cannot be a negative number
     # - Handle any potential error/crash
+      if rating > 5 || rating < 1 
+        errors.add(:rating, "Rating can't be greater than 5 and smaller than 1")
+      end
   end
 end

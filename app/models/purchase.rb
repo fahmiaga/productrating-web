@@ -19,6 +19,7 @@
 #
 class Purchase < ApplicationRecord
   belongs_to :product
+  has_one :review
 
   validates :quantity, presence: true, numericality: { only_integer: true }
   validates :delivery_address, presence: true
@@ -27,6 +28,10 @@ class Purchase < ApplicationRecord
   # - Return true if a review for this purchase exists in the database 
   # - Return false otherwise
   def review_exist?
-    false
+    if Review.exists?(purchase_id: self.id)
+      return true
+    else
+      return false
+    end
   end
 end

@@ -28,6 +28,10 @@ Purchased at: <%= distance_of_time_in_words(@purchase.created_at, Time.now)  %>
 
 <% if @purchase.review_exist? %>
   <%# TODO: Display the review here %>
+  <ul>
+    <li><%= "Rating: #{@purchase.review.rating}" %></li>
+    <li><%= "Comment: #{@purchase.review.comment}" %></li>
+  </ul>
 <% else %>
   <%= link_to 'Give a Review', new_review_url(review: { purchase_id: @purchase.id }) %>
 <% end %>
