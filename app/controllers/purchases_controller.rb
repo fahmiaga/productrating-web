@@ -46,7 +46,6 @@ class PurchasesController < ApplicationController
       return render :edit  
     end
     @new_quantity = @product.quantity - purchase_params[:quantity].to_i
-        puts @new_quantity
         if @purchase.update(purchase_params)
             @product.update(:quantity => @new_quantity)
               redirect_to product_url(@product)
