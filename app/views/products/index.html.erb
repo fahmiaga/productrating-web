@@ -4,7 +4,9 @@
 
 <ul>
 <% @products.each do |product| %>
-  <li><%= link_to product.name, product_url(product) %></li>
+  <li>
+    <%= link_to product.name, product_url(product) %> 
+  </li>
 <% end %>
 </ul>
 
