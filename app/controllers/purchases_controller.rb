@@ -56,8 +56,12 @@ class PurchasesController < ApplicationController
 
   def destroy
     # TODO: Delete record
-   @purchase.destroy
-   redirect_to product_url(@product)
+    if @purchase.review
+      @review = Review.find(@purchase.review.id)
+      @review.destroy
+    end
+    @purchase.destroy
+    redirect_to product_url(@product)
 
   end
 
