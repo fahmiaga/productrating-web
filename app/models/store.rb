@@ -11,4 +11,8 @@ class Store < ApplicationRecord
     has_many :products
     
     validates :name, presence: true
+
+    def store_rating
+        Store.joins(products: [{purchases:  :review }]).where({id: self[:id]}).average(:rating).to_i
+    end
 end
