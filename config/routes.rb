@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   end
   
   resources :reviews
-  resources :stores
+
+  resources :stores do
+    resources :products
+  end
+  
 end

@@ -11,6 +11,7 @@
 #
 class Product < ApplicationRecord
   has_many :purchases
+  belongs_to :store
   
   validates :name, presence: true
   validates :quantity, presence: true
@@ -27,7 +28,7 @@ class Product < ApplicationRecord
   end
 
   def product_rating
-    Product.joins(purchases: :review).average(:rating).to_i
+    Product.joins(purchases: :review).where({id: self[:id]}).average(:rating).to_i
   end
 
 end

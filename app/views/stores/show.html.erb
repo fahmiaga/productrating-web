@@ -1,0 +1,28 @@
+<div>
+
+<h1>Store #<%= @store.id %></h1>
+
+Name: <%= @store.name %>
+<br />
+<%# TODO: Calculate average rating based on the reviews from all of the product's purchases %>
+Average rating: <%# @product.product_rating %>
+
+<br />
+<br />
+
+</div>
+
+<br />
+<br />
+
+<div>
+
+<h2>Products</h2>
+
+<ul>
+<% @store.products.each do |product| %>
+  <li><%= link_to "Product ##{product.id}", product_url(product) %></li>
+<% end %>
+</ul>
+
+</div>
