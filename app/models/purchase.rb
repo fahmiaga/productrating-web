@@ -19,7 +19,7 @@
 #
 class Purchase < ApplicationRecord
   belongs_to :product
-  has_one :review
+  has_one :review, dependent: :destroy
 
   validates :quantity, presence: true, numericality: { only_integer: true }
   validates :delivery_address, presence: true
