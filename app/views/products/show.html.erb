@@ -9,7 +9,7 @@ Price: <%= format_price @product.price %>
 Quantity: <%= @product.quantity %>
 <br />
 <%# TODO: Format the date time to make it more readable %>
-Posted on: <%= distance_of_time_in_words(@product.created_at, Time.now) %>
+Posted on: <%= format_date @product.created_at %>
 <br />
 <%# TODO: Calculate average rating based on the reviews from all of the product's purchases %>
 Average rating: <%= @product.product_rating %>

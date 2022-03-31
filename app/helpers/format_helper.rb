@@ -7,4 +7,8 @@ module FormatHelper
     return "$" + ('%.2f' % price).to_s
   end
 
+  def format_date(date)
+    return distance_of_time_in_words(date, Time.now)
+  end
+
 end
