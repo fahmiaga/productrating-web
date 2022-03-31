@@ -3,20 +3,20 @@ class ReviewsController < ApplicationController
     case action_name.to_sym
     when :new, :create
       @review = Review.new
-      @purchase = Purchase.find(params["review"][:purchase_id])
+      @review.assign_attributes(review_params)
+      
     end
   end
 
   def new
-    @review.assign_attributes(review_params)
   end
 
   def create
     # TODO: Create the record in database
+    purchase = @review.purchase
 
-    @review.assign_attributes(review_params)
     if @review.save
-      redirect_to product_purchase_url(@purchase.product_id, @purchase.id)
+      redirect_to product_purchase_url(purchase.product_id, purchase.id)
     else
       flash[:error] = @review.errors.full_messages.join(', ')
       render :new

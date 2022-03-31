@@ -22,18 +22,18 @@ class PurchasesController < ApplicationController
       return render :new  
     end
    
-    tesi = decrement(@product.quantity)
-    puts tesi 
+    # tesi = decrement(@product.quantity)
+    # puts tesi 
     new_quantity = @product.quantity - purchase_params[:quantity].to_i
 
-    # @purchase.assign_attributes(purchase_params)
-    # if @purchase.save
-    #    @product.update(:quantity => new_quantity)
-    #    redirect_to product_url(@product)
-    # else
-    #   flash[:error] = @purchase.errors.full_messages.join(', ')
-    #   render :new
-    # end
+    @purchase.assign_attributes(purchase_params)
+    if @purchase.save
+       @product.update(:quantity => new_quantity)
+       redirect_to product_url(@product)
+    else
+      flash[:error] = @purchase.errors.full_messages.join(', ')
+      render :new
+    end
   end
 
   def edit

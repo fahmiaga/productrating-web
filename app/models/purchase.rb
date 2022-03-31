@@ -24,8 +24,6 @@ class Purchase < ApplicationRecord
   validates :quantity, presence: true, numericality: { only_integer: true }
   validates :delivery_address, presence: true
 
-  validate :check_quantity 
-
   # TODO: Implement this logic
   # - Return true if a review for this purchase exists in the database 
   # - Return false otherwise
