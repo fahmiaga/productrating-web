@@ -30,11 +30,7 @@ class Purchase < ApplicationRecord
   # - Return true if a review for this purchase exists in the database 
   # - Return false otherwise
   def review_exist?
-    if Review.exists?(purchase_id: self.id)
-      return true
-    else
-      return false
-    end
+    return Review.exists?(purchase_id: self.id)
   end
 
   def check_quantity(product, purchase_quantity)
