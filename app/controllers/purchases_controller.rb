@@ -21,10 +21,9 @@ class PurchasesController < ApplicationController
     if @purchase.check_quantity(@product, purchase_params[:quantity].to_i)
       return render :new  
     end
-   
-    # tesi = decrement(@product.quantity)
-    # puts tesi 
-    new_quantity = @product.quantity - purchase_params[:quantity].to_i
+    
+    product_safe = @product.increment(:quantity, @product.id) 
+    new_quantity = product_safe.quantity - 4 - purchase_params[:quantity].to_i
 
     @purchase.assign_attributes(purchase_params)
     if @purchase.save

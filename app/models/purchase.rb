@@ -32,10 +32,9 @@ class Purchase < ApplicationRecord
   end
 
   def check_quantity(product, purchase_quantity)
-    
     if product.quantity < 1 || product.quantity < purchase_quantity
-      self.errors.add(:quantity, 'too few')
-     end
+      errors.add(:quantity)
+    end
   end
 
 end
